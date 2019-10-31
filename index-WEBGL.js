@@ -1,150 +1,82 @@
 let canvas = undefined;
-let cX = [], cY = [], cR = [], cH = [], cS = [], cV = [], cA = [], cSW=[];
-let lX1 = [], lX2 = [], lY1 = [], lY2 = [], lSW = [];
-let lOff = [],lOffProb = [], lOffAmt = [];
+let cX = [], cY = [], cZ = [], cR = [], cH = [], cS = [], cV = [], cA = [];
+let lX1 = [], lX2 = [], lY1 = [], lY2 = [], lZ1 = [], lZ2 = [], lSW = [];
 let lamt, camt;
-let nav, mXt, mYt, mXr, mXs;
-let eCnt = 0;
-let conX1 = [], conX2 = [], conW1 = [], conW2 = [], conAmt;
 
 function setup() {
-  canvas = createCanvas(2000, 2000);
+  canvas = createCanvas(2000, 2000, WEBGL);
   canvas.parent("sketch");
   smooth(16);
 }
 
 function draw() {
-  background(36,12,90);
+  background(255);
   colorMode(HSB);
-  angleMode(DEGREES);
+  //let camX=map(mouseX,0,width,-2000,2000);
+  //let camY=map(mouseY,0,height,-2000,2000);
+  //camera(camX,camY,(height/2)/tan(PI/6),0,0,0,0,1,0);
+  orbitControl();
 
-  for (let i = 0; i <= 1 + conAmt; i++){
-    fill(cH[20 + i], 80, 70, cA[20 + i]);
-    noStroke();
-    beginShape();
-      vertex(conX1[i], 0);
-      vertex(conX2[i], height);
-      vertex(conX2[i] + conW2[i], height);
-      vertex(conX1[i] + conW1[i], 0);
-    endShape(CLOSE);
-  }
-
-  push();
-  translate(width/2,height/2);
-  translate(mXt-width/2,mYt-height/2); 
-  rotate(map(mXr,0,width,0,360)); 
-  scale(map(mXs,0,width,0.2,1.5),map(mXs,0,width,0.2,1.5));
-  switch(nav){
-    case 1: lastMousePos(0); break;
-    case 2: lastMousePos(1); break;
-    case 3: lastMousePos(2); break;
-  }
-  
-  
-  for (let i = 0; i <= camt; i++) {
+  for (let i = 0; i <= 10; i++) {
     stroke(0);
     strokeWeight(lSW[i]);
-    if (lOffProb[i]<10){
-      line(lX1[i], lY1[i], lX2[i], lY2[i]);
-    } else { 
-      line(lX1[i], lY1[i], lX2[i], lY2[i]);
-      let offset = 30 + lOff[i];
-      for (let p = 1; p <= lOffAmt[i]; p++) {
-        line(lX1[i] + offset * p, lY1[i] + offset * p, lX2[i] + offset * p, lY2[i] + offset * p);        
-      }
-    }
+    line(lX1[i], lY1[i], lZ1[i], lX2[i], lY2[i], lZ2[i]);
   }
-  for (let i = 0; i <= lamt; i++) {
-    stroke(0);
-    strokeWeight(cSW[i]);
+  for (let i = 0; i <= 10; i++) {
+    translate(cX[i], cY[i], cZ[i]);
+    noStroke();
     fill(cH[i], 100, 70, cA[i]);
-    circle(cX[i],cY[i],cR[i]);
+    sphere(cR[i]);
   }
-  pop();
-
-  stroke(0);
-  strokeWeight(80);
-  noFill();
-  circle(width/2,height/2,1800);
-
-}
-
-function lastMousePos(k){
-  switch(k){
-    case 0: mXt = mouseX; mYt = mouseY; break;
-    case 1: mXr = mouseX; break;
-    case 2: mXs = mouseX; break;
-  }
-}
-
-function mouseClicked() {
-  nav = 0;
 }
 
 function keyPressed() {
-  if (key === "e" || key === "E") {
+  if (key === "s" || key === "S") {
     if (canvas === undefined) {
       throw new Error("Could not find your canvas");
     }
-    saveCanvas(canvas, "sketch_"+eCnt, "png");
-    eCnt += 1;
+    saveCanvas(canvas, "sketch", "png");
   } else if (key === "n" || key === "N") {
     colorGen();
-    conAmt=Math.round(random(1));
-    for (let i = 0; i <= 25; i++) {
+    for (let i = 0; i <= 20; i++) {
       //Circle
-      camt = 5 + random(10);
+      camt = 5 + random(15);
       cX[i] = -500 + random(1000);
       cY[i] = -500 + random(1000);
-      cR[i] = random(500); //Radius
+      cZ[i] = -random(400);
+      cR[i] = random(300); //Radius
       cA[i] = 0.05 + random(0.8); //Alpha
-      cSW[i]= random(15);
 
       //Line
-      lamt = 3 + random(8);
-      lX1[i] = -800 + random(1600);
-      lX2[i] = -800 + random(1600);
-      lY1[i] = -800 + random(1600);
-      lY2[i] = -800 + random(1600);
+      lamt = 5 + random(15);
+      lX1[i] = -1000 + random(2000);
+      lX2[i] = -1000 + random(2000);
+      lY1[i] = -1000 + random(2000);
+      lY2[i] = -1000 + random(2000);
+      lZ1[i] = -random(2000);
+      lZ2[i] = -random(2000);
       lSW[i] = 1 + random(10);
-      lOffProb[i] = Math.round(random(10));
-      lOff[i] = Math.round(random(80));
-      lOffAmt[i] = 1 + Math.round(random(2));
-
-      //Cones
-      conX1[i] = - 500 + random(2500);
-      conX2[i] = - 500 + random(2500);
-      conW1[i] = 50 + random(250);
-      conW2[i] = 50 + random(250);
     }
-  } else if (key === "t" || key === "T") {
-    nav = 1;
-  }  else if (key === "r" || key === "R") {
-    nav = 2;
-  }  else if (key === "s" || key === "S") {
-    nav = 3;
-  }  else if (key === "x" || key === "X") {
-    nav = 0;
   }
 }
 
 //COLOR GEN
 function colorGen() {
   let Hseed = Math.floor(random(360));
-  for (let i = 0; i <= 25; i++) {
+  for (let i = 0; i <= 20; i++) {
     switch (Math.round(random(1))) {
       case 0:
         switch (Math.round(random(1))) {
-          case 0: cH[i] = Hseed + Math.floor(random(20)); break;
-          case 1: cH[i] = Hseed - Math.floor(random(20)); break;
+          case 0: cH[i] = Hseed + Math.floor(random(5)); break;
+          case 1: cH[i] = Hseed - Math.floor(random(5)); break;
         }
         cS[i] = 50 + random(50);
         cV[i] = 50 + random(50);
         break;
       case 1:
         switch (Math.round(random(1))) {
-          case 0: cH[i] = hue_comp(Hseed) + Math.floor(random(20)); break;
-          case 1: cH[i] = hue_comp(Hseed) - Math.floor(random(20)); break;
+          case 0: cH[i] = hue_comp(Hseed) + Math.floor(random(5)); break;
+          case 1: cH[i] = hue_comp(Hseed) - Math.floor(random(5)); break;
         }
         cS[i] = 50 + random(50);
         cV[i] = 50 + random(50);
