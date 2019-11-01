@@ -65,7 +65,7 @@ function draw() {
   stroke(0);
   strokeWeight(80);
   noFill();
-  circle(width/2,height/2,1800);
+  circle(width/2,height/2,width/1.1;
 
 }
 
@@ -94,26 +94,26 @@ function keyPressed() {
     for (let i = 0; i <= 25; i++) {
       //Circle
       camt = 5 + random(10);
-      cX[i] = -500 + random(1000);
-      cY[i] = -500 + random(1000);
-      cR[i] = random(500); //Radius
+      cX[i] = - width/4 + random(width/2);
+      cY[i] = - width/4 + random(width/2);
+      cR[i] = random(width/4); //Radius
       cA[i] = 0.05 + random(0.8); //Alpha
       cSW[i]= random(15);
 
       //Line
       lamt = 3 + random(8);
-      lX1[i] = -800 + random(1600);
-      lX2[i] = -800 + random(1600);
-      lY1[i] = -800 + random(1600);
-      lY2[i] = -800 + random(1600);
+      lX1[i] = - width/2.5 + random(width/1.25);
+      lX2[i] = - width/2.5 + random(width/1.25);
+      lY1[i] = - width/2.5 + random(width/1.25);
+      lY2[i] = - width/2.5 + random(width/1.25);
       lSW[i] = 1 + random(10);
       lOffProb[i] = Math.round(random(10));
       lOff[i] = Math.round(random(80));
       lOffAmt[i] = 1 + Math.round(random(2));
 
       //Cones
-      conX1[i] = - 500 + random(2500);
-      conX2[i] = - 500 + random(2500);
+      conX1[i] = - width/4 + random(width/0.8);
+      conX2[i] = - width/4 + random(width/0.8);
       conW1[i] = 50 + random(250);
       conW2[i] = 50 + random(250);
     }
