@@ -65,7 +65,7 @@ function draw() {
   stroke(0);
   strokeWeight(80);
   noFill();
-  circle(width/2,height/2,width/1.1;
+  circle(width/2,height/2,width/1.1);
 
 }
 
