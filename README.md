@@ -12,7 +12,7 @@ Kandinsky was inspired early on by works of Monet. He felt that the colours were
 ![Kreise im Kreis (1923)](images/Wassily_Kandinsky-Kreise_im_Kreis_(1923).jpg)
 [Image Source](https://www.wassilykandinsky.net/work-247.php)
 
-Kandinsky's 1923 work 'Kreise im Kreis' (98.7 x 95.6 cm, Philadelphia Museum Of Art) stands at the beginning of his Bauhaus-phase. It depicts mutliple overlapping, semi-transparent, differently sized, coloured and outlined circles in another bigger circle with a dominant black outline. The color scheme is analogous complementary. Additionally there are multiple lines with different lengths and orientation and sometimes repeated by an offset within the bounds of the larger circle. The background is dominated by opaque cones (like spotlights).
+Kandinsky's 1923 work 'Kreise im Kreis' (98.7 x 95.6 cm, Philadelphia Museum Of Art) stands at the beginning of his Bauhaus-phase. It depicts mutliple overlapping, semi-transparent, differently sized, coloured and outlined circles in another bigger circle with a dominant black outline. The colour scheme is analogous complementary. Additionally there are multiple lines with different lengths and orientation and sometimes repeated by an offset within the bounds of the larger circle. The background is dominated by opaque cones (like spotlights).
 
 
 ## Result
